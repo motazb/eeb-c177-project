@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+from urllib.request import urlopen
+
+html = urlopen("https://sa.ucla.edu/ro/Public/SOC/Results/ClassDetail?term_cd=20S&subj_area_cd=HIST%20%20%20&crs_catlg_no=0010B%20%20%20&class_id=221065200&class_no=%20001%20%20").read()
+
+import re
+string = re.sub("[^a-zA-z]", " ", str(html))
+
+import time
+starttime=time.time()
+
+while 'Class Full' in string:
+    print('Open!')
+    time.sleep(1.0 - ((time.time() - starttime) % 1.0))
