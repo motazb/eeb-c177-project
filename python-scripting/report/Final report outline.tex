@@ -21,7 +21,7 @@
 \maketitle
 
 \section{Abstract}
-Talk about the program and the data and what was found out about the data after running the program on it.
+This program can be utilized by hospitals to help in preparation for patients ahead of time. This can allow the hospital to use its resources most efficiently, and also mitigate the time for patients to receive treatment.
 \newpage
 
 \tableofcontents
@@ -37,7 +37,8 @@ Talk about the purpose of the program and what it does. Talk about who can use i
 
 
 \section{Methods}
-Talk about the code used and how I made it. Talk about how its run by Python through the terminal.\\
+\subsection{Python code}
+This is the code I created using Python. It can quickly sort through hospital data and provide important information such as the frequencies of injuries occurring at different times of the year, the most common injuries the patients were diagnosed with, the most common methods of injury, and the most common location at which patients receive their injuries.\\
 
 \begin{verbatim}
 #!/usr/bin/env python
@@ -155,13 +156,41 @@ julydates()
 
 \end{verbatim}
 
+\subsection{R code}
+This is the code I created using R. The first one provides useful information about the different age distributions among patients with recorded injuries. The second code provides an insight on the patients' demographics.
+
+\begin{verbatim}
+setwd("C:\\Users\\Motaz\\")
+ptdata <- read.csv("nss15.csv")
+hist(ptdata$age, main="Age frequencies", xlab="Ages", border="black",col="red")
+#Opens the patient data file and uses it to create a histogram of the patients' ages.
+This code also adds a title, axes labels, and colors to the histogram.
+
+setwd("C:\\Users\\Motaz\\")
+ptdata <- read.csv("nss15.csv")
+ggplot(ptdata, aes(x=as.factor(race), fill=as.factor(race)))+
++ geom_bar()+scale_fill_manual(values=c("NA","red","orange","yellow","green","blue"))+
+theme(legend.position="none")
+#creates a bar graph based on the data of the patients' races.
+This code also adds color to differentiate the bars for every race.
+\end{verbatim}
+
 
 \section{Results}
-Talk about the outputs of my program after inputting my dataset. \\\\
-
-\subsection{Figures}
-Insert the histograms and discuss them\\\\
-
+Talk about the outputs of my program after inputting my dataset.
+\newpage
+\section{Figures}
+\begin{figure}[h]
+	\caption{Ages histogram\label{fig:Histogram}}
+	\centering
+	\includegraphics[width=0.25\paperwidth]{Histogram}
+\\Histogram of patients' ages.
+	\caption{Patient race\label{fig:Bar graph}}
+	\centering
+	\includegraphics[width=0.25\paperwidth]{Bar graph}
+\\Histogram of patients' recorded race.
+\end{figure}
+\newpage
 \section{Discussion}
 Explain the results that the program produced and their purpose and how they can be used.
 
